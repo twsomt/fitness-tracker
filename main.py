@@ -15,6 +15,7 @@ def check_correct_data(data):
     return len(data) == 2 and all(data)
     
 def check_correct_time(time):
+    # Проверка корректности полученного времени.
     return not(len(storage_data) != 0 and time <= max(storage_data)) 
     
 def get_step_day(storage_data, steps):
