@@ -2,8 +2,8 @@ import datetime as dt  # Импорт модуля датавремя.
 from decimal import Decimal as ds
 
 FORMAT = '%H:%M:%S'    # Формат полученного времени.
-WEIGHT = 75            # Вес.
-HEIGHT = 175           # Рост.
+WEIGHT = 50            # Вес.
+HEIGHT = 165           # Рост.
 K_1 = 0.035            # Коэффициент для подсчета калорий.
 K_2 = 0.029            # Коэффициент для подсчета калорий.
 STEP_M = 0.65          # Длина шага в метрах.
@@ -28,7 +28,7 @@ def get_distance(steps):
 
 def get_spent_calories(dist, current_time):
     # Количество потраченных калорий.
-    hours = round(current_time.hour + current_time.minute / 60 + current_time.second / 3600, 2)
+    hours = current_time.hour + current_time.minute / 60
     mean_speed = dist / hours
     minutes = hours * 60
     spent_calories = (K_1*WEIGHT + (mean_speed**2 / HEIGHT) * K_2*WEIGHT) * minutes
@@ -82,3 +82,9 @@ def accept_package(data):
     show_message(pack_time, day_steps, dist, spent_calories, achievement)
     storage_data[pack_time] = pack_steps
     return storage_data
+
+    # Данные для самопроверки.
+package_0 = ('3:50:01', 5000)
+
+
+accept_package(package_0)
