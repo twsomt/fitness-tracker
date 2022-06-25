@@ -28,6 +28,8 @@ def get_distance(steps):
 def get_spent_calories(dist, current_time):
     # Количество потраченных калорий.
     hours = current_time.hour + current_time.minute / 60
+    # Вариант с секундами c округлением.
+    #hours = round(current_time.hour + current_time.minute / 60 + current_time.second / 3600, 2)
     mean_speed = dist / hours
     minutes = hours * 60
     spent_calories = (K_1*WEIGHT + (mean_speed**2 / HEIGHT) * K_2*WEIGHT) * minutes
