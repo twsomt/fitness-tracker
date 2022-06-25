@@ -1,5 +1,4 @@
 import datetime as dt  # Импорт модуля датавремя.
-from decimal import Decimal as ds
 
 FORMAT = '%H:%M:%S'    # Формат полученного времени.
 WEIGHT = 75            # Вес.
