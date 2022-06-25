@@ -16,7 +16,7 @@ def check_correct_data(data):
     
 def check_correct_time(time):
     # Проверка корректности полученного времени.
-    return not(storage_data and time <= max(storage_data)) 
+    return storage_data and time > max(storage_data)
     
 def get_step_day(storage_data, steps):
     # Количество пройденных шагов за этот день.
@@ -65,7 +65,7 @@ def accept_package(data):
     pack_time = dt.datetime.strptime(data[0], FORMAT).time()  # Время обращения
     pack_steps = data[1]                                      # Количество шагов
 
-    if not check_correct_time(pack_time):
+    if check_correct_time(pack_time):
         return 'Некорректное значение времени'
     
     day_steps =  get_step_day(storage_data, pack_steps)   # Кол-во пройденных шагов.
