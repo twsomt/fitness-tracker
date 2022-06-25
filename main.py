@@ -16,7 +16,7 @@ def check_correct_data(data):
     
 def check_correct_time(time):
     # Проверка корректности полученного времени.
-    return not(len(storage_data) != 0 and time <= max(storage_data)) 
+    return not(storage_data and time <= max(storage_data)) 
     
 def get_step_day(storage_data, steps):
     # Количество пройденных шагов за этот день.
@@ -33,7 +33,6 @@ def get_spent_calories(dist, current_time):
     minutes = hours * 60
     spent_calories = (K_1*WEIGHT + (mean_speed**2 / HEIGHT) * K_2*WEIGHT) * minutes
     return spent_calories # Калории в минуту * 60 * кол-во часов.
-
 
 def get_achievement(dist):
     # Поздравления за пройденную дистанцию.
@@ -57,7 +56,6 @@ def show_message(current_time, day_steps, dist, spent_calories, achievement):
 {achievement}
 ''')
 
-
 def accept_package(data):
     # Обработатка входящих данных.
     if not check_correct_data(data):
@@ -67,13 +65,9 @@ def accept_package(data):
     pack_time = dt.datetime.strptime(data[0], FORMAT).time()  # Время обращения
     pack_steps = data[1]                                      # Количество шагов
 
-
     if not check_correct_time(pack_time):
         return 'Некорректное значение времени'
     
-    
-    
-
     day_steps =  get_step_day(storage_data, pack_steps)   # Кол-во пройденных шагов.
     dist =  get_distance(pack_steps)                      # Пройдено, км.
     spent_calories = get_spent_calories(dist, pack_time)  # Сожжённо калорий.
@@ -83,8 +77,15 @@ def accept_package(data):
     storage_data[pack_time] = pack_steps
     return storage_data
 
-    # Данные для самопроверки.
-package_0 = ('3:50:01', 5000)
-
+# Данные для самопроверки.
+package_0 = ('2:00:01', 505)
+package_1 = (None, 3211)
+package_2 = ('9:36:02', 15000)
+package_3 = ('9:36:02', 9000)
+package_4 = ('8:01:02', 7600)
 
 accept_package(package_0)
+accept_package(package_1)
+accept_package(package_2)
+accept_package(package_3)
+accept_package(package_4)
