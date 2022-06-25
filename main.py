@@ -16,7 +16,7 @@ def check_correct_data(data):
     
 def check_correct_time(time):
     # Проверка корректности полученного времени.
-    return storage_data and time > max(storage_data)
+    return storage_data and time <= max(storage_data)
     
 def get_step_day(storage_data, steps):
     # Количество пройденных шагов за этот день.
